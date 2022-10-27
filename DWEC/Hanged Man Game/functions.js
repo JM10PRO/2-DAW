@@ -28,7 +28,7 @@ function getNuevaPalabra() {
     getGuiones(palabraSeleccionada);
     let contenido = getPalabraOculta();
     parrafoGuiones.textContent = contenido;
-    parrafoOculto.style.display = '';
+    // parrafoOculto.style.display = '';
     mostrarBotonera();
 }
 
