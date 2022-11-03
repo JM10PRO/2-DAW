@@ -12,10 +12,10 @@ body {
 
 button {
     font-family: Carnivalee Freakshow;
-    font-size: 44px;
-    margin: 3px;
+    font-size: 2.75rem;
+    margin: 0.1875rem;
     background-color: indianred;
-    border-radius: 15px;
+    border-radius: 1rem;
     border: 0px;
 }
 
@@ -26,37 +26,39 @@ button:hover {
 div {
     margin-left: auto;
     margin-right: auto;
-    max-width: 800px;
-    padding: 10px;
+    max-width: 50rem;
+    padding: 0.625rem;
     text-align: center;
 }
 
 p {
     color: black;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 900;
 }
 
 #vidas {
     /* background-color: rgba(28, 28, 28, 0.5); */
-    text-shadow: 1px 1px 2px black;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem black;
     color: red;
-    font-size: 44px;
-    letter-spacing: 2px;
+    font-size: 2.75rem;
+    letter-spacing: 0.125rem;
 }
 
 #guiones {
-    font-size: 44px;
+    color: orangered;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem black;
+    font-size: 2.75rem;
 }
 
 #botonera {
-    margin-top: 150px;
-    max-width: 950px;
-
+    margin-top: 9.375rem;
+    margin-bottom: 0.0625rem;
+    max-width: 59.375rem;
 }
 
 #parrafo {
-    font-size: 44px;
+    font-size: 2.75rem;
 }
 
 /* #botonera > span{

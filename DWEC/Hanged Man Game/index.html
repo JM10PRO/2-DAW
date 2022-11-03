@@ -11,18 +11,21 @@
 </head>
 
 <body onload="lanzadera()">
-    <div>
+    <div id="juego">
+        <button onclick="launchFullScreen(document.documentElement);"> Entrar en pantalla completa </button>
+        <button onclick="cancelFullScreen();"> Salir de pantalla completa </button>
+        <br>
         <p style="display: none;" id="vidas"></p>
-        <p onclick="getNuevaPalabra()" id="parrafo">Jugar</p>
+        <!-- <p onclick="getNuevaPalabra()" id="parrafo">Jugar</p> -->
+        <button id="jugar" onclick="getNuevaPalabra()">JUGAR</button>
         <p style="display: none;" id="guiones"></p>
         <p id="parrafoOculto" style="display: none;">
             <input type="text" id="letra">
             <input type="submit" value="Enviar" onclick="comprobarSiHayEsaLetra(this)">
         </p>
     </div>
-    <br><br><br>
     <div id="botonera">
-        
+
     </div>
 </body>
 

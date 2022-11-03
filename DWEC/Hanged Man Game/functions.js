@@ -1,6 +1,6 @@
 let cultura = ['monumento', 'cuadro', 'vino'];
 let parrafoVidas = "";
-let parrafoInicio = "";
+let botonJugar = "";
 let parrafoGuiones = "";
 let parrafoOculto = "";
 let palabraOcultada = [];
@@ -8,19 +8,24 @@ let letrasRestantes = 0;
 let palabraSeleccionada = "";
 let numeroVidas = 6;
 let letrasUsadas = [];
+let espacioBotonera = "";
 
 function lanzadera() {
     alert('Page is loaded');
     parrafoVidas = document.getElementById('vidas');
-    parrafoInicio = document.getElementById('parrafo');
+    botonJugar = document.getElementById('jugar');
     parrafoGuiones = document.getElementById('guiones');
     parrafoOculto = document.getElementById('parrafoOculto');
+    espacioBotonera = document.getElementById('botonera');
 }
 
 function getNuevaPalabra() {
-    parrafoInicio.style.display = 'none';
+    botonJugar.style.display = 'none';
     parrafoGuiones.style.display = '';
     parrafoVidas.style.display = '';
+    palabraOcultada = [];
+    espacioBotonera.style.display = '';
+    parrafoVidas.style.color = 'red';
     parrafoVidas.textContent = numeroVidas + ' vidas restantes';
     let indice = getRandomWord(0, cultura.length - 1).toFixed(0);
     palabraSeleccionada = cultura[indice];
@@ -59,6 +64,7 @@ function comprobarSiHayEsaLetra(botonLetra) {
     letra = botonLetra.innerText.toLowerCase();
     botonLetra.disable = true;
     botonLetra.style.opacity = 0.7;
+    botonLetra.style.backgroundColor = 'gray';
     botonLetra.setAttribute('onclick', '');
     console.log(letra);
     let letraEncontrada = false;
@@ -84,6 +90,11 @@ function comprobarSiHayEsaLetra(botonLetra) {
             parrafoVidas.style.color = 'green';
             parrafoVidas.textContent = '¡HAS GANADO!';
             parrafoOculto.style.display = 'none';
+            letrasRestantes = 0;
+            numeroVidas = 6;
+            borrarBotonesBotonera();
+            botonJugar.innerText = 'JUGAR DE NUEVO';
+            botonJugar.style.display = '';
         }
     } else {
         console.log('NO está la letra');
@@ -95,8 +106,15 @@ function comprobarSiHayEsaLetra(botonLetra) {
 function getVidas() {
     if (numeroVidas == 0) {
         parrafoOculto.style.display = 'none';
-        parrafoVidas.textContent = 'Se acabó la partida';
+        parrafoVidas.textContent = 'La partida ha terminado';
         parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
+        borrarBotonesBotonera();
+        espacioBotonera.style.display = 'none';
+        palabraOcultada = [];
+        letrasRestantes = 0;
+        numeroVidas = 6;
+        botonJugar.innerText = 'JUGAR DE NUEVO';
+        botonJugar.style.display = '';
     } else {
         parrafoVidas.textContent = numeroVidas + ' vidas restantes';
     }
@@ -105,27 +123,41 @@ function getVidas() {
 
 function mostrarBotonera() {
     let abecedario = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    let espacioBotonera = document.getElementById('botonera');
+    //console.log(botonesAnteriores);
     for (let i = 0; i < abecedario.length; i++) {
         let span = document.createElement('span');
         let botonLetra = document.createElement('button');
         botonLetra.innerText = abecedario[i];
         botonLetra.setAttribute('onclick', 'comprobarSiHayEsaLetra(this)');
+        botonLetra.classList.add('botonLetra');
         span.appendChild(botonLetra);
         espacioBotonera.appendChild(span);
     }
 }
 
-// function checkLetraUsada(letra){
-//     console.log(letrasUsadas.length);
-//     for(let i=0; i<letrasUsadas.length; i++){
-//         if(letra==letrasUsadas[i]){
-//             alert('Ya has usado esa letra');
-//             return true;
-//         }else{
-//             console.log('letra añadida')
-//             letrasUsadas.push(letra);
-//             return false;
-//         }
-//     }
-// }
+function borrarBotonesBotonera() {
+    let botonera = document.getElementById('botonera');
+    while (botonera.hasChildNodes()) {
+        botonera.removeChild(botonera.firstChild);
+    }
+}
+
+function launchFullScreen(element) {
+    if (element.requestFullScreen) {
+        element.requestFullScreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen();
+    }
+}
+// Lanza en pantalla completa en navegadores que lo soporten
+function cancelFullScreen() {
+    if (document.cancelFullScreen) {
+        document.cancelFullScreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+    }
+}
