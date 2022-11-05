@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="styles.css">
+    <script src="functions.js"></script>
+    <title>Juego del Ahorcado</title>
+</head>
+
+<body onload="lanzadera()">
+    <div id="pantalla">
+        <button id="bt-pantalla-completa" onclick="toggleFullScreen();">Pantalla completa</button>
+    </div>
+    <div id="categoria">
+        <select name="opciones" id="opciones">
+            <option value="0">Seleccionar categoria</option>
+            <option value="1">Cultura</option>
+            <option value="2">Electrodomesticos</option>
+            <option value="3">Tecnologia</option>
+        </select>
+    </div>
+    <div id="juego">
+        <p style="display: none;" id="vidas"></p>
+        <button id="jugar" onclick="getNuevaPalabra()">JUGAR</button>
+        <p style="display: none;" id="guiones"></p>
+        <p id="parrafoOculto" style="display: none;">
+            <input type="text" id="letra">
+            <input type="submit" value="Enviar" onclick="comprobarSiHayEsaLetra(this)">
+        </p>
+        <div id="botonera"></div>
+    </div>
+</body>
+
+</html>
