@@ -5,11 +5,11 @@ let palabraOcultada = [];
 let letrasRestantes = "";
 let palabraSeleccionada = "";
 let numeroVidas = 6;
-let categorias = "";
 let espacioBotonera = "";
 let selectNivel = "";
 let countNivel = 1;
-let botonCategoria = "";
+let infoCategoria = "";
+let infoNivel = "";
 const music = new Audio("sound/west.mp3");
 const fallo = new Audio("sound/fallo.mp3");
 const hasPerdido = new Audio("sound/goofy.mp3");
@@ -21,6 +21,9 @@ function lanzadera() {
     botonJugar = document.getElementById('jugar');
     parrafoGuiones = document.getElementById('guiones');
     espacioBotonera = document.getElementById('botonera');
+    infoCategoria = document.getElementById('infoCategoria');
+    infoNivel = document.getElementById('infoNivel');
+    reproducirMusica();
 }
 
 // Muestra el contenido a pantalla completa o a modo ventana según su estado actual
@@ -66,13 +69,13 @@ function letraMasAparecida(palabra) {
     return itemMaxRepeat;
 }
 
-function letraAleatoriaDeLaPalabraSeleccionada(palabraSeleccionada){
+function letraAleatoriaDeLaPalabraSeleccionada(palabraSeleccionada) {
     console.log(palabraSeleccionada);
-    let numeroAleatorio = getRandomNumber(0, palabraSeleccionada.length-1);
+    let numeroAleatorio = getRandomNumber(0, palabraSeleccionada.length - 1);
     let arrayPalabraSeleccionada = palabraSeleccionada.split('');
     console.log(arrayPalabraSeleccionada);
     let letraAleatoria = arrayPalabraSeleccionada[numeroAleatorio];
-    console.log('letra aleatoria = '+letraAleatoria);
+    console.log('letra aleatoria = ' + letraAleatoria);
     return letraAleatoria;
 }
 
@@ -93,10 +96,6 @@ function nivel() {
     console.log(nivel);
     let pistaLetra = "";
 
-    if (nivel == 0) {
-        nivel = 1;
-    }
-
     if (nivel == 1) {
         pistaLetra = letraMasAparecida(palabraSeleccionada);
         cambiaLetra(pistaLetra);
@@ -105,9 +104,8 @@ function nivel() {
         cambiaLetra(pistaLetra);
     } else if (nivel == 3) {
 
-    } else if (nivel == 4) {
-
     }
+    infoNivel.textContent = 'Nivel : ' + nivel;
     return pistaLetra;
 }
 
@@ -115,15 +113,15 @@ function seleccionarPalabraCategoria() {
     let categorias = document.getElementById('opciones');
     let categoriaSeleccionada = categorias.options[categorias.selectedIndex].textContent;
 
-    if (categoriaSeleccionada != "seleccionar categoria") {
+
+    if (categoriaSeleccionada != "categorias") {
         let arrayPalabrasCategoria = document.getElementById(categoriaSeleccionada).textContent.split(" ");
 
         let indice = getRandomNumber(0, arrayPalabrasCategoria.length - 1);
 
         palabraSeleccionada = arrayPalabrasCategoria[indice];
     } else {
-        categorias.options[0].textContent = 'categoria random';
-
+        categoriaSeleccionada = "Aleatoria";
         let indiceAleatorio = getRandomNumber(1, categorias.options.length - 1);
 
         let categoriaAleatoria = categorias.options[indiceAleatorio].textContent;
@@ -135,6 +133,7 @@ function seleccionarPalabraCategoria() {
 
         palabraSeleccionada = arrayPalabrasCategoriaAleatoria[palabraAleatoria];
     }
+    infoCategoria.textContent = 'Categoria : ' + categoriaSeleccionada;
     console.log(palabraSeleccionada);
     return palabraSeleccionada;
 }
@@ -210,7 +209,12 @@ function comprobarSiHayEsaLetra(botonLetra) {
             parrafoVidas.style.color = 'green';
             parrafoVidas.textContent = '¡HAS GANADO!';
             borrarBotonesBotonera();
-            categorias.options[0].textContent = 'seleccionar categoria';
+            let selectCategorias = document.getElementById('opciones');
+            selectCategorias.style.display = '';
+            let selectNivel = document.getElementById('nivel');
+            selectNivel.style.display = '';
+            let mensajeNivelCategoria = document.getElementById('mensaje');
+            mensajeNivelCategoria.style.display = 'none';
             botonJugar.innerText = 'JUGAR DE NUEVO';
             botonJugar.style.display = '';
             numeroVidas = 6;
@@ -230,7 +234,12 @@ function actualizaEstadoVidas() {
         parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
         borrarBotonesBotonera();
         espacioBotonera.style.display = 'none';
-        categorias.options[0].textContent = 'seleccionar categoria';
+        let selectCategorias = document.getElementById('opciones');
+        selectCategorias.style.display = '';
+        let selectNivel = document.getElementById('nivel');
+        selectNivel.style.display = '';
+        let mensajeNivelCategoria = document.getElementById('mensaje');
+        mensajeNivelCategoria.style.display = 'none';
         palabraOcultada = [];
         letrasRestantes = 0;
         numeroVidas = 6;
@@ -248,25 +257,36 @@ function muestraFondoHangMan(numeroVidas) {
 
     if (numeroVidas == 6) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 5) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 4) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 3) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 2) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 1) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     } else if (numeroVidas == 0) {
         document.body.style.background = nuevoFondo;
+        document.body.style.backgroundSize = 'cover';
     }
 }
 
 function getNuevaPalabra() {
-    categorias = document.getElementById('opciones');
-    categorias.style.display = 'none';
+    let selectCategorias = document.getElementById('opciones');
+    selectCategorias.style.display = 'none';
+    let selectNivel = document.getElementById('nivel');
+    selectNivel.style.display = 'none';
     botonJugar.style.display = 'none';
+    let mensajeNivelCategoria = document.getElementById('mensaje');
+    mensajeNivelCategoria.style.display = '';
     parrafoGuiones.style.display = '';
     parrafoVidas.style.display = '';
     palabraOcultada = [];

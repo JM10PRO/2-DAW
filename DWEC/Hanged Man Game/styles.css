@@ -8,17 +8,19 @@ body {
     background-size: cover;
     font-family: Carnivalee Freakshow;
     display: block;
-    min-width: 1000px;
-    min-height: 1000px;
+    min-width: 1010px;
+    min-height: 38rem;
 }
 
-button, select{
+button, select {
     font-family: Carnivalee Freakshow;
     font-size: 2.75rem;
     margin: 0.1875rem;  
     background-color: indianred;
     border-radius: 1rem;
     border: 0rem;
+    border: 3px solid lightgray;
+    box-shadow: 5px 4px 15px black;
 }
 
 button:hover {
@@ -27,20 +29,29 @@ button:hover {
 
 div {
     margin: 0 auto;
-    max-width: 50rem;
-    padding: 0.625rem;
+    max-width: 34rem;
 }
 
-p {
-    font-weight: 900;
+#jugar {
+    margin-top: 4.375rem;
+    border: 3px solid goldenrod;
+    box-shadow: 4px 4px 5px black;
 }
 
-#botonera {
-    position: absolute;
-    bottom: 0.0625rem;
-    left: 1rem;
-    right: 1rem;
-    max-width: 59.375rem;
+#jugar:hover {
+    translate: 2px 2px;
+    box-shadow: 0px 0px;
+}
+
+#mensaje {
+    height: 6.25rem;
+    line-height: 0.3rem;
+    font-size: 1.875rem;
+    color: black;
+    padding: 0px 0.625rem;
+    background-color: rgba(255, 160, 122, 0.6);
+    border-radius: 0.75rem;
+    border: 0.0625px solid black;
 }
 
 #parrafo {
@@ -56,23 +67,36 @@ p {
 }
 
 #juego {
-    margin-left: 35%;
-    margin-right: 35%;
+    padding-top: 1rem;
     text-align: center;
     text-shadow: 0.0625rem 0.0625rem 0.125rem black;
     font-size: 2.75rem;
     letter-spacing: 0.125rem;
 }
+#botonera {
+    position: fixed;
+    bottom: 0.0625rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: 65rem;
+}
 
-#juego p {
+#botonera button {
+    border: 0px;
+}
+
+#vidas {
+    margin-top: 2.625rem;
     text-align: center;
-    
 }
 
 #guiones {
     color: orangered;
     background-color: rgba(255, 228, 196, 0.7);
-    border-radius: 12px;
+    border-radius: 0.75rem;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 0px 0.625rem;
 }
 
 #seleccionar {
