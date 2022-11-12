@@ -4,19 +4,21 @@
 }
 
 body {
-    background-image: url(img/western.jpg);
-    background-repeat: no-repeat;
+    background: #ff0000ae url(img/western6.png) no-repeat center center fixed;
     background-size: cover;
     font-family: Carnivalee Freakshow;
+    display: block;
+    min-width: 1000px;
+    min-height: 1000px;
 }
 
-button {
+button, select{
     font-family: Carnivalee Freakshow;
     font-size: 2.75rem;
-    margin: 0.1875rem;
+    margin: 0.1875rem;  
     background-color: indianred;
     border-radius: 1rem;
-    border: 0px;
+    border: 0rem;
 }
 
 button:hover {
@@ -24,36 +26,20 @@ button:hover {
 }
 
 div {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-width: 50rem;
     padding: 0.625rem;
-    text-align: center;
 }
 
 p {
-    color: black;
-    font-size: 1.25rem;
     font-weight: 900;
 }
 
-#vidas {
-    /* background-color: rgba(28, 28, 28, 0.5); */
-    text-shadow: 0.0625rem 0.0625rem 0.125rem black;
-    color: red;
-    font-size: 2.75rem;
-    letter-spacing: 0.125rem;
-}
-
-#guiones {
-    color: orangered;
-    text-shadow: 0.0625rem 0.0625rem 0.125rem black;
-    font-size: 2.75rem;
-}
-
 #botonera {
-    margin-top: 9.375rem;
-    margin-bottom: 0.0625rem;
+    position: absolute;
+    bottom: 0.0625rem;
+    left: 1rem;
+    right: 1rem;
     max-width: 59.375rem;
 }
 
@@ -61,6 +47,34 @@ p {
     font-size: 2.75rem;
 }
 
-/* #botonera > span{
-    padding: 0px;
-} */
+#controles {
+    float: left;
+}
+
+#controles button {
+    display: inline-block;
+}
+
+#juego {
+    margin-left: 35%;
+    margin-right: 35%;
+    text-align: center;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem black;
+    font-size: 2.75rem;
+    letter-spacing: 0.125rem;
+}
+
+#juego p {
+    text-align: center;
+    
+}
+
+#guiones {
+    color: orangered;
+    background-color: rgba(255, 228, 196, 0.7);
+    border-radius: 12px;
+}
+
+#seleccionar {
+    float: right;
+}

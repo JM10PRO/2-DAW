@@ -11,21 +11,33 @@
 </head>
 
 <body onload="lanzadera()">
-    <div id="juego">
-        <button onclick="launchFullScreen(document.documentElement);"> Entrar en pantalla completa </button>
-        <button onclick="cancelFullScreen();"> Salir de pantalla completa </button>
-        <br>
-        <p style="display: none;" id="vidas"></p>
-        <!-- <p onclick="getNuevaPalabra()" id="parrafo">Jugar</p> -->
-        <button id="jugar" onclick="getNuevaPalabra()">JUGAR</button>
-        <p style="display: none;" id="guiones"></p>
-        <p id="parrafoOculto" style="display: none;">
-            <input type="text" id="letra">
-            <input type="submit" value="Enviar" onclick="comprobarSiHayEsaLetra(this)">
-        </p>
+    <div id="controles">
+        <button id="bt-pantalla-completa" onclick="toggleFullScreen();">[ ]</button>
+        <button id="musica" onclick="reproducirMusica()">Musica</button>
     </div>
-    <div id="botonera">
-
+    <div id="seleccionar">
+        <select name="nivel" id="nivel">
+            <option value="0">Nivel</option>
+            <option value="1">Nivel 1</option>
+            <option value="2">Nivel 2</option>
+            <option value="3">Nivel 3</option>
+            <option value="4">Nivel 4</option>
+        </select>
+        <select name="opciones" id="opciones">
+            <option value="0">seleccionar categoria</option>
+            <option value="1">cultura</option>
+            <option value="2">electrodomesticos</option>
+            <option value="3">tecnologia</option>
+        </select>
+        <p id="cultura" style="display: none;">momumento cuadro vino</p>
+        <p id="electrodomesticos" style="display: none;">television lavadora lavavajillas horno frigorifico</p>
+        <p id="tecnologia" style="display: none;">smartphone portatil smartband tablet</p>
+    </div>
+    <div id="juego">
+        <p id="vidas" style="display: none;"></p>
+        <button id="jugar" onclick="getNuevaPalabra()">JUGAR</button>
+        <p id="guiones" style="display: none;"></p>
+        <div id="botonera"></div>
     </div>
 </body>
 
