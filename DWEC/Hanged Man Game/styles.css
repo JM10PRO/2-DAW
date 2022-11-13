@@ -54,15 +54,11 @@ div {
     border: 0.0625px solid black;
 }
 
-#parrafo {
-    font-size: 2.75rem;
-}
-
-#controles {
+#menu-controles {
     float: left;
 }
 
-#controles button {
+#menu-controles button {
     display: inline-block;
 }
 
@@ -73,16 +69,9 @@ div {
     font-size: 2.75rem;
     letter-spacing: 0.125rem;
 }
-#botonera {
-    position: fixed;
-    bottom: 0.0625rem;
-    left: 1rem;
-    right: 1rem;
-    max-width: 65rem;
-}
 
-#botonera button {
-    border: 0px;
+#reloj {
+    margin: 0 auto;
 }
 
 #vidas {
@@ -99,6 +88,19 @@ div {
     padding: 0px 0.625rem;
 }
 
-#seleccionar {
+#botonera {
+    position: fixed;
+    bottom: 0.0625rem;
+    left: 1rem;
+    right: 1rem;
+    max-width: 65rem;
+}
+
+#botonera button {
+    border: 0px;
+}
+
+
+#menu-seleccionar {
     float: right;
 }

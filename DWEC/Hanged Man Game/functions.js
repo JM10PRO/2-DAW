@@ -10,6 +10,12 @@ let selectNivel = "";
 let countNivel = 1;
 let infoCategoria = "";
 let infoNivel = "";
+let reloj = "";
+let minutos = 3;
+let segundos = 0;
+let spanSegundos = "";
+let spanMinutos = "";
+let intervalo = "";
 const music = new Audio("sound/west.mp3");
 const fallo = new Audio("sound/fallo.mp3");
 const hasPerdido = new Audio("sound/goofy.mp3");
@@ -23,6 +29,9 @@ function lanzadera() {
     espacioBotonera = document.getElementById('botonera');
     infoCategoria = document.getElementById('infoCategoria');
     infoNivel = document.getElementById('infoNivel');
+    reloj = document.getElementById('reloj');
+    spanMinutos = document.getElementById('minutos');
+    spanSegundos = document.getElementById('segundos');
     reproducirMusica();
 }
 
@@ -158,6 +167,46 @@ function getGuiones(palabra) {
     mostrarBotonera(letraParaDesabilitar);
 }
 
+function cargarSegundos() {
+    let txtSegundos = "";
+
+    if (segundos < 0) {
+        segundos = 59;
+    }
+
+    // Mostramos Segundos en pantalla
+    if (segundos < 10) {
+        txtSegundos = `0${segundos}`;
+    } else {
+        txtSegundos = segundos;
+    }
+    spanSegundos.innerHTML = txtSegundos;
+    segundos--;
+    cargarMinutos(segundos);
+}
+
+function cargarMinutos(segundos) {
+    let txtMinutos = "";
+
+    if (segundos == -1 && minutos !== 0) {
+        setTimeout(() => {
+            minutos--;
+        }, 500);
+    }
+
+    // Mostramos los minutos en pantalla
+    if (minutos < 10) {
+        txtMinutos = `0${minutos}`;
+    } else {
+        txtMinutos = minutos;
+    }
+    spanMinutos.innerHTML = txtMinutos;
+}
+
+function iniciarCuentaAtras() {
+    intervalo = setInterval(cargarSegundos, 1000);
+}
+
 function mostrarBotonera(letraParaDesabilitar) {
     let abecedario = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     for (let i = 0; i < abecedario.length; i++) {
@@ -183,77 +232,46 @@ function borrarBotonesBotonera() {
         botonera.removeChild(botonera.firstChild);
     }
 }
-function comprobarSiHayEsaLetra(botonLetra) {
-    let letra = botonLetra.innerText.toLowerCase();
-    botonLetra.disable = true;
-    botonLetra.style.opacity = 0.7;
-    botonLetra.style.backgroundColor = 'gray';
-    botonLetra.setAttribute('onclick', '');
-    let letraEncontrada = false;
 
-    for (let i = 0; i < palabraOcultada.length; i++) {
-        if (letra == palabraSeleccionada[i]) {
-            palabraOcultada[i] = letra;
-            let contenido = getPalabraOculta();
-            parrafoGuiones.textContent = contenido;
-            letraEncontrada = true;
-            letrasRestantes--;
-        }
-    }
-
-    botonLetra.value = "";
-
-    if (letraEncontrada) {
-        if (letrasRestantes == 0) {
-            sonidoWinner();
-            parrafoVidas.style.color = 'green';
-            parrafoVidas.textContent = '¡HAS GANADO!';
-            borrarBotonesBotonera();
-            let selectCategorias = document.getElementById('opciones');
-            selectCategorias.style.display = '';
-            let selectNivel = document.getElementById('nivel');
-            selectNivel.style.display = '';
-            let mensajeNivelCategoria = document.getElementById('mensaje');
-            mensajeNivelCategoria.style.display = 'none';
-            botonJugar.innerText = 'JUGAR DE NUEVO';
-            botonJugar.style.display = '';
-            numeroVidas = 6;
-        }
-    } else {
-        sonidoFallo();
-        numeroVidas--;
-        numeroVidas = actualizaEstadoVidas();
-    }
+function vistaHaGanado() {
+    segundos = 0
+    minutos = 3;
+    intervalo = clearInterval(intervalo);
+    parrafoVidas.style.color = 'green';
+    parrafoVidas.textContent = '¡HAS GANADO!';
+    let selectCategorias = document.getElementById('opciones');
+    selectCategorias.style.display = '';
+    let selectNivel = document.getElementById('nivel');
+    selectNivel.style.display = '';
+    let mensajeNivelCategoria = document.getElementById('mensaje');
+    mensajeNivelCategoria.style.display = 'none';
+    botonJugar.innerText = 'JUGAR DE NUEVO';
+    botonJugar.style.display = '';
+    numeroVidas = 6;
 }
 
-function actualizaEstadoVidas() {
-    if (numeroVidas == 0) {
-        muestraFondoHangMan(numeroVidas);
-        sonidoHasPerdido();
-        parrafoVidas.textContent = 'La partida ha terminado';
-        parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
-        borrarBotonesBotonera();
-        espacioBotonera.style.display = 'none';
-        let selectCategorias = document.getElementById('opciones');
-        selectCategorias.style.display = '';
-        let selectNivel = document.getElementById('nivel');
-        selectNivel.style.display = '';
-        let mensajeNivelCategoria = document.getElementById('mensaje');
-        mensajeNivelCategoria.style.display = 'none';
-        palabraOcultada = [];
-        letrasRestantes = 0;
-        numeroVidas = 6;
-        botonJugar.innerText = 'JUGAR DE NUEVO';
-        botonJugar.style.display = '';
-    } else {
-        muestraFondoHangMan(numeroVidas);
-        parrafoVidas.textContent = numeroVidas + ' vidas restantes';
-    }
-    return numeroVidas;
+function vistaHaPerdido() {
+    segundos = 0
+    minutos = 3;
+    intervalo = clearInterval(intervalo);
+    parrafoVidas.textContent = 'La partida ha terminado';
+    parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
+    espacioBotonera.style.display = 'none';
+    let selectCategorias = document.getElementById('opciones');
+    selectCategorias.style.display = '';
+    let selectNivel = document.getElementById('nivel');
+    selectNivel.style.display = '';
+    let mensajeNivelCategoria = document.getElementById('mensaje');
+    mensajeNivelCategoria.style.display = 'none';
+    palabraOcultada = [];
+    letrasRestantes = 0;
+    numeroVidas = 6;
+    botonJugar.innerText = 'JUGAR DE NUEVO';
+    botonJugar.style.display = '';
 }
 
 function muestraFondoHangMan(numeroVidas) {
-    let nuevoFondo = " #ff0000ae url('img/western" + numeroVidas + ".png') no-repeat center center fixed";
+    let nuevoFondo = "#ff0000ae url('img/western" + numeroVidas + ".png') no-repeat center center fixed";
 
     if (numeroVidas == 6) {
         document.body.style.background = nuevoFondo;
@@ -279,20 +297,80 @@ function muestraFondoHangMan(numeroVidas) {
     }
 }
 
-function getNuevaPalabra() {
+function comprobarSiHayEsaLetra(botonLetra) {
+    let letra = botonLetra.innerText.toLowerCase();
+    botonLetra.disable = true;
+    botonLetra.style.opacity = 0.7;
+    botonLetra.style.backgroundColor = 'gray';
+    botonLetra.setAttribute('onclick', '');
+    let letraEncontrada = false;
+
+    for (let i = 0; i < palabraOcultada.length; i++) {
+        if (letra == palabraSeleccionada[i]) {
+            palabraOcultada[i] = letra;
+            let contenido = getPalabraOculta();
+            parrafoGuiones.textContent = contenido;
+            letraEncontrada = true;
+            letrasRestantes--;
+        }
+    }
+
+    botonLetra.value = "";
+
+    if (letraEncontrada) {
+        if (letrasRestantes == 0) {
+            sonidoWinner();
+            borrarBotonesBotonera();
+            vistaHaGanado();
+        }
+    } else {
+        sonidoFallo();
+        numeroVidas--;
+        numeroVidas = actualizaEstadoVidas();
+    }
+}
+
+function actualizaEstadoVidas() {
+    if (numeroVidas == 0) {
+        muestraFondoHangMan(numeroVidas);
+        sonidoHasPerdido();
+        borrarBotonesBotonera();
+        vistaHaPerdido();
+    } else {
+        muestraFondoHangMan(numeroVidas);
+        parrafoVidas.textContent = numeroVidas + ' vidas restantes';
+    }
+    return numeroVidas;
+}
+
+function mostrarElementosParaEmpezarPartida() {
+    spanMinutos.innerHTML = '03';
+    spanSegundos.innerHTML = '00';
+    reloj.style.display = '';
+    let mensajeNivelCategoria = document.getElementById('mensaje');
+    mensajeNivelCategoria.style.display = '';
+    parrafoGuiones.style.display = '';
+    parrafoVidas.style.display = '';
+    parrafoVidas.style.color = 'red';
+    parrafoVidas.textContent = numeroVidas + ' vidas restantes';
+    espacioBotonera.style.display = '';
+}
+
+function ocultarElementosParaEmpezarPartida() {
+    reloj.style.display = 'none';
     let selectCategorias = document.getElementById('opciones');
     selectCategorias.style.display = 'none';
     let selectNivel = document.getElementById('nivel');
     selectNivel.style.display = 'none';
     botonJugar.style.display = 'none';
-    let mensajeNivelCategoria = document.getElementById('mensaje');
-    mensajeNivelCategoria.style.display = '';
-    parrafoGuiones.style.display = '';
-    parrafoVidas.style.display = '';
+}
+
+function jugar() {
+    ocultarElementosParaEmpezarPartida();
+    mostrarElementosParaEmpezarPartida();
+    clearInterval(intervalo);
+    iniciarCuentaAtras();
     palabraOcultada = [];
-    espacioBotonera.style.display = '';
-    parrafoVidas.style.color = 'red';
-    parrafoVidas.textContent = numeroVidas + ' vidas restantes';
     palabraSeleccionada = seleccionarPalabraCategoria();
     letrasRestantes = palabraSeleccionada.length;
     getGuiones(palabraSeleccionada);
