@@ -11,8 +11,8 @@ let countNivel = 1;
 let infoCategoria = "";
 let infoNivel = "";
 let reloj = "";
-let minutos = 0;
-let segundos = 10;
+let minutos = 3;
+let segundos = 0;
 let spanSegundos = "";
 let spanMinutos = "";
 let intervalo = "";
@@ -239,8 +239,8 @@ function borrarBotonesBotonera() {
 function vistaHaGanado() {
     sonidoWinner();
     borrarBotonesBotonera();
-    segundos = 10
-    minutos = 0;
+    minutos = 3;
+    segundos = 0;
     clearInterval(intervalo);
     parrafoVidas.style.color = 'green';
     parrafoVidas.textContent = '¡HAS GANADO!';
@@ -259,8 +259,8 @@ function vistaHaPerdido() {
     muestraFondoHangMan(numeroVidas);
     sonidoHasPerdido();
     borrarBotonesBotonera();
-    segundos = 10
-    minutos = 0;
+    minutos = 3;
+    segundos = 0;
     clearInterval(intervalo);
     parrafoVidas.textContent = 'La partida ha terminado';
     parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';

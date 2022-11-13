@@ -11,11 +11,11 @@
 </head>
 
 <body onload="lanzadera()">
-    <div id="menu-controles">
+    <div id="menu-controles" class="slide-in-tl">
         <button id="bt-pantalla-completa" onclick="toggleFullScreen();">[ ]</button>
         <button id="musica" onclick="reproducirMusica()">Musica</button>
     </div>
-    <div id="menu-seleccionar">
+    <div id="menu-seleccionar" class="slide-in-tr">
         <select name="nivel" id="nivel">
             <option value="1">Nivel 1</option>
             <option value="2">Nivel 2</option>
@@ -36,7 +36,7 @@
         <p id="reloj" style="display: none;"><span id="minutos"></span>:<span id="segundos"></span></p>
         <p id="vidas" style="display: none;"></p>
         <p id="guiones" style="display: none;"></p>
-        <button id="jugar" onclick="jugar()">JUGAR</button>
+        <button id="jugar" onclick="jugar()" class="scale-in-center">JUGAR</button>
         <div id="botonera"></div>
     </div>
 </body>

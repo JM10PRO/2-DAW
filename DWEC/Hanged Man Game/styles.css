@@ -12,10 +12,11 @@ body {
     min-height: 38rem;
 }
 
-button, select {
+button,
+select {
     font-family: Carnivalee Freakshow;
     font-size: 2.75rem;
-    margin: 0.1875rem;  
+    margin: 0.1875rem;
     background-color: indianred;
     border-radius: 1rem;
     border: 0rem;
@@ -23,8 +24,13 @@ button, select {
     box-shadow: 5px 4px 15px black;
 }
 
-button:hover {
+button:hover,
+select:hover {
     background-color: burlywood;
+}
+
+select:focus {
+    background-color: indianred;
 }
 
 div {
@@ -60,6 +66,7 @@ div {
 
 #menu-controles button {
     display: inline-block;
+    font-size: 2rem;
 }
 
 #juego {
@@ -103,4 +110,144 @@ div {
 
 #menu-seleccionar {
     float: right;
+}
+
+#menu-seleccionar select {
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.swirl-out-bck {
+    -webkit-animation: swirl-out-bck 1s ease-in 3 both;
+    animation: swirl-out-bck 1s ease-in 3 both;
+}
+
+@-webkit-keyframes swirl-out-bck {
+    0% {
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes swirl-out-bck {
+    0% {
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Entrada por la esquina arriba derecha */
+.slide-in-tr {
+    -webkit-animation: slide-in-tr 1s ease-in-out;
+    animation: slide-in-tr 1s ease-in-out;
+}
+
+@-webkit-keyframes slide-in-tr {
+    0% {
+        -webkit-transform: translateY(-1000px) translateX(1000px);
+        transform: translateY(-1000px) translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-tr {
+    0% {
+        -webkit-transform: translateY(-1000px) translateX(1000px);
+        transform: translateY(-1000px) translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Entrada por la esquina arriba izquierda */
+.slide-in-tl {
+    -webkit-animation: slide-in-tl 1s ease-in-out;
+    animation: slide-in-tl 1s ease-in-out;
+}
+
+@-webkit-keyframes slide-in-tl {
+    0% {
+        -webkit-transform: translateY(-1000px) translateX(-1000px);
+        transform: translateY(-1000px) translateX(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-tl {
+    0% {
+        -webkit-transform: translateY(-1000px) translateX(-1000px);
+        transform: translateY(-1000px) translateX(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Entrada de pequeño a grande */
+.scale-in-center {
+    -webkit-animation: scale-in-center 1s ease-in-out;
+    animation: scale-in-center 1s ease-in-out;
+}
+
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
 }
