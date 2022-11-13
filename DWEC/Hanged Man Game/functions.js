@@ -11,8 +11,8 @@ let countNivel = 1;
 let infoCategoria = "";
 let infoNivel = "";
 let reloj = "";
-let minutos = 3;
-let segundos = 0;
+let minutos = 0;
+let segundos = 10;
 let spanSegundos = "";
 let spanMinutos = "";
 let intervalo = "";
@@ -188,7 +188,10 @@ function cargarSegundos() {
 function cargarMinutos(segundos) {
     let txtMinutos = "";
 
-    if (segundos == -1 && minutos !== 0) {
+    if (segundos == -1 && minutos == 0) {
+        clearInterval(intervalo);
+        vistaHaPerdido();
+    } else if (segundos == -1 && minutos !== 0) {
         setTimeout(() => {
             minutos--;
         }, 500);
@@ -234,9 +237,11 @@ function borrarBotonesBotonera() {
 }
 
 function vistaHaGanado() {
-    segundos = 0
-    minutos = 3;
-    intervalo = clearInterval(intervalo);
+    sonidoWinner();
+    borrarBotonesBotonera();
+    segundos = 10
+    minutos = 0;
+    clearInterval(intervalo);
     parrafoVidas.style.color = 'green';
     parrafoVidas.textContent = '¡HAS GANADO!';
     let selectCategorias = document.getElementById('opciones');
@@ -251,9 +256,12 @@ function vistaHaGanado() {
 }
 
 function vistaHaPerdido() {
-    segundos = 0
-    minutos = 3;
-    intervalo = clearInterval(intervalo);
+    muestraFondoHangMan(numeroVidas);
+    sonidoHasPerdido();
+    borrarBotonesBotonera();
+    segundos = 10
+    minutos = 0;
+    clearInterval(intervalo);
     parrafoVidas.textContent = 'La partida ha terminado';
     parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
     espacioBotonera.style.display = 'none';
@@ -319,8 +327,6 @@ function comprobarSiHayEsaLetra(botonLetra) {
 
     if (letraEncontrada) {
         if (letrasRestantes == 0) {
-            sonidoWinner();
-            borrarBotonesBotonera();
             vistaHaGanado();
         }
     } else {
@@ -332,9 +338,6 @@ function comprobarSiHayEsaLetra(botonLetra) {
 
 function actualizaEstadoVidas() {
     if (numeroVidas == 0) {
-        muestraFondoHangMan(numeroVidas);
-        sonidoHasPerdido();
-        borrarBotonesBotonera();
         vistaHaPerdido();
     } else {
         muestraFondoHangMan(numeroVidas);
