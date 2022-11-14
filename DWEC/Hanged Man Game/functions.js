@@ -1,5 +1,6 @@
 let parrafoVidas = "";
 let botonJugar = "";
+let descripcion = "";
 let parrafoGuiones = "";
 let palabraOcultada = [];
 let letrasRestantes = "";
@@ -10,28 +11,38 @@ let selectNivel = "";
 let countNivel = 1;
 let infoCategoria = "";
 let infoNivel = "";
+let infoestrellas = "";
 let reloj = "";
 let minutos = 3;
 let segundos = 0;
 let spanSegundos = "";
 let spanMinutos = "";
 let intervalo = "";
-const music = new Audio("sound/west.mp3");
-const fallo = new Audio("sound/fallo.mp3");
-const hasPerdido = new Audio("sound/goofy.mp3");
+let estrella = "";
+let recuentoEstrellas = 0;
+let caballo = "";
+const musica = new Audio("sound/west.mp3");
 const winnner = new Audio("sound/winner.mp3");
+const hasPerdido = new Audio("sound/caballo.mp3");
+const acierto = new Audio("sound/ding.mp3");
+const fallo = new Audio("sound/fallo.mp3");
+const disparo = new Audio("sound/disparo.mp3");
 
 // Inicializa estas variables cuando cargue el contenido para interactuar con la página
 function lanzadera() {
     parrafoVidas = document.getElementById('vidas');
     botonJugar = document.getElementById('jugar');
+    descripcion = document.getElementById('descripcion');
     parrafoGuiones = document.getElementById('guiones');
     espacioBotonera = document.getElementById('botonera');
     infoCategoria = document.getElementById('infoCategoria');
     infoNivel = document.getElementById('infoNivel');
+    infoestrellas = document.getElementById('infoestrellas');
     reloj = document.getElementById('reloj');
     spanMinutos = document.getElementById('minutos');
     spanSegundos = document.getElementById('segundos');
+    estrella = document.getElementById('estrella');
+    caballo = document.getElementById('caballo');
     reproducirMusica();
 }
 
@@ -237,21 +248,24 @@ function borrarBotonesBotonera() {
 }
 
 function vistaHaGanado() {
+    recuentoEstrellas++;
     sonidoWinner();
     borrarBotonesBotonera();
     minutos = 3;
     segundos = 0;
     clearInterval(intervalo);
+    reloj.classList.remove('vibrate-3');
     parrafoVidas.style.color = 'green';
     parrafoVidas.textContent = '¡HAS GANADO!';
     let selectCategorias = document.getElementById('opciones');
     selectCategorias.style.display = '';
     let selectNivel = document.getElementById('nivel');
     selectNivel.style.display = '';
-    let mensajeNivelCategoria = document.getElementById('mensaje');
+    let mensajeNivelCategoria = document.getElementById('info');
     mensajeNivelCategoria.style.display = 'none';
     botonJugar.innerText = 'JUGAR DE NUEVO';
     botonJugar.style.display = '';
+    estrella.style.display = '';
     numeroVidas = 6;
 }
 
@@ -262,15 +276,17 @@ function vistaHaPerdido() {
     minutos = 3;
     segundos = 0;
     clearInterval(intervalo);
+    reloj.classList.remove('vibrate-3');
+    caballo.style.display = '';
     parrafoVidas.textContent = 'La partida ha terminado';
     parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
     espacioBotonera.style.display = 'none';
+    let mensajeNivelCategoria = document.getElementById('info');
+    mensajeNivelCategoria.style.display = 'none';
     let selectCategorias = document.getElementById('opciones');
     selectCategorias.style.display = '';
     let selectNivel = document.getElementById('nivel');
     selectNivel.style.display = '';
-    let mensajeNivelCategoria = document.getElementById('mensaje');
-    mensajeNivelCategoria.style.display = 'none';
     palabraOcultada = [];
     letrasRestantes = 0;
     numeroVidas = 6;
@@ -279,7 +295,7 @@ function vistaHaPerdido() {
 }
 
 function muestraFondoHangMan(numeroVidas) {
-    let nuevoFondo = "#ff0000ae url('img/western" + numeroVidas + ".png') no-repeat center center fixed";
+    let nuevoFondo = "#530000ae url('img/western" + numeroVidas + ".png') no-repeat center center fixed";
 
     if (numeroVidas == 6) {
         document.body.style.background = nuevoFondo;
@@ -328,6 +344,8 @@ function comprobarSiHayEsaLetra(botonLetra) {
     if (letraEncontrada) {
         if (letrasRestantes == 0) {
             vistaHaGanado();
+        }else{
+            sonidoAcierto();
         }
     } else {
         sonidoFallo();
@@ -350,7 +368,10 @@ function mostrarElementosParaEmpezarPartida() {
     spanMinutos.innerHTML = '03';
     spanSegundos.innerHTML = '00';
     reloj.style.display = '';
-    let mensajeNivelCategoria = document.getElementById('mensaje');
+    reloj.classList.add('vibrate-3');
+    sonidoDisparo();
+    infoestrellas.textContent = 'Estrellas : '+recuentoEstrellas;
+    let mensajeNivelCategoria = document.getElementById('info');
     mensajeNivelCategoria.style.display = '';
     parrafoGuiones.style.display = '';
     parrafoVidas.style.display = '';
@@ -360,7 +381,9 @@ function mostrarElementosParaEmpezarPartida() {
 }
 
 function ocultarElementosParaEmpezarPartida() {
-    reloj.style.display = 'none';
+    estrella.style.display = 'none';
+    caballo.style.display = 'none';
+    descripcion.style.display = 'none';
     let selectCategorias = document.getElementById('opciones');
     selectCategorias.style.display = 'none';
     let selectNivel = document.getElementById('nivel');
@@ -383,12 +406,17 @@ function jugar() {
 }
 
 function reproducirMusica() {
-    if (music.paused) {
-        music.loop = true;
-        music.play();
+    if (musica.paused) {
+        musica.volume = 1;
+        musica.loop = true;
+        musica.play();
     } else {
-        music.pause();
+        musica.pause();
     }
+}
+
+function sonidoAcierto() {
+    acierto.play();
 }
 
 function sonidoFallo() {
@@ -401,4 +429,7 @@ function sonidoHasPerdido() {
 
 function sonidoWinner() {
     winnner.play();
+}
+function sonidoDisparo() {
+    disparo.play();
 }

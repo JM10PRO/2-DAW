@@ -24,21 +24,25 @@
         <select name="opciones" id="opciones">
             <option value="0">categorias</option>
             <option value="1">cultura</option>
-            <option value="2">aparatos</option>
+            <option value="2">deporte</option>
             <option value="3">tecnologia</option>
         </select>
-        <div id="mensaje" style="display: none;"><p id="infoCategoria"></p><p id="infoNivel"></p></div>
+        <div id="info" style="display: none;"><p id="infoCategoria"></p><p id="infoNivel"></p><p id="infoestrellas"></p></div>
         <p id="cultura" style="display: none;">momumento cuadro vino</p>
-        <p id="aparatos" style="display: none;">television lavadora lavavajillas horno frigorifico</p>
+        <p id="deporte" style="display: none;">equipo pelota</p>
         <p id="tecnologia" style="display: none;">smartphone portatil smartband tablet</p>
     </div>
     <div id="juego">
-        <p id="reloj" style="display: none;"><span id="minutos"></span>:<span id="segundos"></span></p>
+        <p id="reloj" style="display: none;" class="vibrate-3"><span id="minutos"></span>:<span id="segundos"></span></p>
         <p id="vidas" style="display: none;"></p>
-        <p id="guiones" style="display: none;"></p>
+        <p id="guiones" style="display: none;" class="shadow-drop-2-center"></p>
+        <img id="estrella" style="display: none;" src="img/estrella.gif" alt="">
         <button id="jugar" onclick="jugar()" class="scale-in-center">JUGAR</button>
+        <div id="descripcion" class="slide-in-blurred-bottom">Este es el juego del ahorcado. Tienes que adivinar todas las letras de una palabra. <br> Si tienes 6 fallos o se acaba el tiempo pierdes. <br> ¿ Aceptas el duelo ? <br> Buena suerte.
+        </div>
         <div id="botonera"></div>
     </div>
+    <img id="caballo" style="display: none;" src="img/caballo.gif" alt="">
 </body>
 
 </html>
