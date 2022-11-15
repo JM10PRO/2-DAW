@@ -1,6 +1,6 @@
 @font-face {
     font-family: Carnivalee Freakshow;
-    src: url(fonts/carnivalee_freakshow/Carnevalee\ Freakshow.ttf);
+    src: url(font/carnivalee_freakshow/Carnevalee\ Freakshow.ttf);
 }
 
 body {
@@ -38,6 +38,11 @@ div {
     max-width: 34rem;
 }
 
+#icono-pantalla, #icono-sonido {
+    width: 1.5rem;
+    padding: 0.4375rem 0.25rem 0px 0.25rem;
+}
+
 #jugar {
     margin-top: 4.375rem;
     border: 3px solid goldenrod;
@@ -50,8 +55,8 @@ div {
 }
 
 #descripcion {
-    margin-top: 120px;
-    padding: 10px;
+    margin-top: 7.5rem;
+    padding: 0.625rem;
     background-color: rgba(255, 228, 196, 0.75);
     text-align: center;
     border-radius: 1rem;
@@ -140,41 +145,6 @@ div {
     bottom: 6.25rem;
     right: 7.5rem;
 }
-
-/* Estrellas girando */
-.swirl-in-bck {
-    -webkit-animation: swirl-in-bck 0.65s ease-out both;
-    animation: swirl-in-bck 0.65s ease-out both;
-}
-
-@-webkit-keyframes swirl-in-bck {
-    0% {
-        -webkit-transform: rotate(540deg) scale(5);
-        transform: rotate(540deg) scale(5);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: rotate(0) scale(1);
-        transform: rotate(0) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes swirl-in-bck {
-    0% {
-        -webkit-transform: rotate(540deg) scale(5);
-        transform: rotate(540deg) scale(5);
-        opacity: 0;
-    }
-
-    100% {
-        -webkit-transform: rotate(0) scale(1);
-        transform: rotate(0) scale(1);
-        opacity: 1;
-    }
-}
-
 
 /* Entrada por la esquina arriba derecha */
 .slide-in-tr {
@@ -279,7 +249,6 @@ div {
 }
 
 /* Aparición desde abajo para descripción del juego */
-
 .slide-in-blurred-bottom {
     -webkit-animation: slide-in-blurred-bottom 1s 1s both;
     animation: slide-in-blurred-bottom 1s 1s both;

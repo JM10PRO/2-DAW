@@ -12,8 +12,9 @@
 
 <body onload="lanzadera()">
     <div id="menu-controles" class="slide-in-tl">
-        <button id="bt-pantalla-completa" onclick="toggleFullScreen();">[ ]</button>
-        <button id="musica" onclick="reproducirMusica()">Musica</button>
+        <button id="bt-pantalla-completa" onclick="toggleFullScreen();"><img id="icono-pantalla" src="img/icono-pantalla.png" alt="Pantalla completa" srcset=""></button>
+        <button id="musica" onclick="reproducirMusica()"><img id="icono-sonido" src="img/icono-sonido.png" alt="Sonido" srcset=""></button>
+        <button id="bt-terminar" style="display: none;" onclick="vistaHaPerdido();">Terminar partida</button>
     </div>
     <div id="menu-seleccionar" class="slide-in-tr">
         <select name="nivel" id="nivel">
@@ -25,12 +26,12 @@
             <option value="0">categorias</option>
             <option value="1">cultura</option>
             <option value="2">deporte</option>
-            <option value="3">tecnologia</option>
+            <option value="3">empresas</option>
         </select>
         <div id="info" style="display: none;"><p id="infoCategoria"></p><p id="infoNivel"></p><p id="infoestrellas"></p></div>
-        <p id="cultura" style="display: none;">momumento cuadro vino</p>
-        <p id="deporte" style="display: none;">equipo pelota</p>
-        <p id="tecnologia" style="display: none;">smartphone portatil smartband tablet</p>
+        <p id="cultura" style="display: none;">momumento cuadro vino arquitectura arte audiovisual autor baile barroco biblioteca cante cine colegio comedia comida conocimiento costumbres danza dibujo enciclopedia escribir escultura festival flamenco folclore gastronomia idioma instituto lengua libros museo obra pintura teatro turismo universidad vocabulario</p>
+        <p id="deporte" style="display: none;">equipo pelota camiseta pista saltar raqueta baloncesto marcar guantes atleta rodillera entrenar correr tenis jugador atletismo entrenador entrenar esgrima patinaje ciclismo bicicleta red futbolista balonmano boxeo gimnasia golf motociclismo rugby voleibol espectador encestar escalar nadar gimnasio</p>
+        <p id="empresas" style="display: none;">google facebook apple samsung microsoft intel ibm oracle accenture amd deloitte sony indra netflix amazon orange vodafone twitter pepsi mcdonals cocacola nike adidas nintendo tesla heineken cruzcampo canon danone lenovo caixabank endesa repsol cepsa naturgy iberdrola</p>
     </div>
     <div id="juego">
         <p id="reloj" style="display: none;" class="vibrate-3"><span id="minutos"></span>:<span id="segundos"></span></p>

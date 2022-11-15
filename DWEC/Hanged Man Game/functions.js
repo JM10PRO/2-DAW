@@ -21,6 +21,7 @@ let intervalo = "";
 let estrella = "";
 let recuentoEstrellas = 0;
 let caballo = "";
+let botonTerminarPartida = "";
 const musica = new Audio("sound/west.mp3");
 const winnner = new Audio("sound/winner.mp3");
 const hasPerdido = new Audio("sound/caballo.mp3");
@@ -33,6 +34,7 @@ function lanzadera() {
     parrafoVidas = document.getElementById('vidas');
     botonJugar = document.getElementById('jugar');
     descripcion = document.getElementById('descripcion');
+    botonTerminarPartida = document.getElementById('bt-terminar');
     parrafoGuiones = document.getElementById('guiones');
     espacioBotonera = document.getElementById('botonera');
     infoCategoria = document.getElementById('infoCategoria');
@@ -48,14 +50,11 @@ function lanzadera() {
 
 // Muestra el contenido a pantalla completa o a modo ventana según su estado actual
 function toggleFullScreen() {
-    let textoBoton = document.getElementById('bt-pantalla-completa');
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-        textoBoton.textContent = "[ ]";
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
-            textoBoton.textContent = "[ ]";
         }
     }
 }
@@ -257,6 +256,7 @@ function vistaHaGanado() {
     reloj.classList.remove('vibrate-3');
     parrafoVidas.style.color = 'green';
     parrafoVidas.textContent = '¡HAS GANADO!';
+    botonTerminarPartida.style.display = 'none';
     let selectCategorias = document.getElementById('opciones');
     selectCategorias.style.display = '';
     let selectNivel = document.getElementById('nivel');
@@ -281,6 +281,7 @@ function vistaHaPerdido() {
     parrafoVidas.textContent = 'La partida ha terminado';
     parrafoGuiones.textContent = 'La palabra secreta era "' + palabraSeleccionada + '"';
     espacioBotonera.style.display = 'none';
+    botonTerminarPartida.style.display = 'none';
     let mensajeNivelCategoria = document.getElementById('info');
     mensajeNivelCategoria.style.display = 'none';
     let selectCategorias = document.getElementById('opciones');
@@ -365,6 +366,7 @@ function actualizaEstadoVidas() {
 }
 
 function mostrarElementosParaEmpezarPartida() {
+    botonTerminarPartida.style.display = '';
     spanMinutos.innerHTML = '03';
     spanSegundos.innerHTML = '00';
     reloj.style.display = '';
@@ -430,6 +432,7 @@ function sonidoHasPerdido() {
 function sonidoWinner() {
     winnner.play();
 }
+
 function sonidoDisparo() {
     disparo.play();
 }
